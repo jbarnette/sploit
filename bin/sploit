@@ -1,0 +1,46 @@
+#!/usr/bin/env ruby
+
+require "optparse"
+require "sploit"
+
+OptionParser.new do |opts|
+  opts.banner = "Usage: #$0 [options] url..."
+
+  gist = nil
+  
+  opts.on "--gist id", "-g", "URLs are inside a Gist." do |id|
+    gist = id
+  end
+  
+  opts.on "--help", "-h", "-?", "Show this help." do
+    puts opts
+    exit
+  end
+  
+  opts.on "--version", "-V", "Prints #{Sploit::VERSION}." do
+    puts Sploit::VERSION
+    exit
+  end
+
+  begin
+    opts.parse! ARGV
+  rescue OptionParser::ParseError => e
+    warn e.message
+    abort opts.to_s
+  end
+
+  if gist
+    ARGV.unshift "gistfile1.txt" if ARGV.empty?
+    ARGV.collect! { |url| File.join "http://gist.github.com/raw", gist, url }
+  end
+
+  if ARGV.empty?
+    abort opts.to_s
+  end
+
+  begin
+    Sploit.run *ARGV
+  rescue SocketError => e
+    abort e.message
+  end
+end
