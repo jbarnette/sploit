@@ -3,7 +3,8 @@ require "hoe"
 Hoe.plugin :doofus, :git
 
 Hoe.spec "sploit" do
-  developer "John Barnette", "jbarnette@rubygems.org"
+  developer "John Barnette",    "jbarnette@rubygems.org"
+  developer "Dr. Nic Williams", "drnicwilliams@gmail.com"
 
   self.extra_rdoc_files = Dir["*.rdoc"]
   self.history_file     = "CHANGELOG.rdoc"

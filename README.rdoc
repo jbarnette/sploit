@@ -42,7 +42,7 @@ your face.
 
 == License
 
-Copyright 2010 John Barnette (code@jbarnette.com)
+Copyright 2010 John Barnette, Dr. Nic Williams
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
