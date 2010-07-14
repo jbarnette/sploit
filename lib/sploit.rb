@@ -12,9 +12,15 @@ class Sploit
 
   def self.run *urls
     results = urls.collect do |url|
-      eval open(url).read, nil, url, 1
+      eval self.fetch(url).read, nil, url, 1
     end
 
     results.length == 1 ? results.first : results
   end
+
+  # factor this out for easy testability
+  def self.fetch url
+    return open(url).read
+  end
+
 end
